@@ -387,7 +387,7 @@ footer{background:var(--ink);color:rgba(251,247,240,.65);padding:2.5rem;text-ali
 // ---------------------------------------------------------------
 // STEP 1: After deploying your Apps Script, paste the URL below
 // ---------------------------------------------------------------
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyIlsSSL09uUpWYLzgpOM4xrZJ5gi6HGE6_KkWik8wbzAY2-WDCFPNyYHCar2Bl1abJ/exec';
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyIlsSSL09uUpWYLzgpOM4xrZJ5gi6HGE6_KkWik8wbzAY2-WDCFPNyYHCar2Bl1abJ/exec";
 // ---------------------------------------------------------------
 
 var selectedProg = '';
@@ -470,18 +470,28 @@ function handleSubmit() {
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    body: JSON.stringify(data)
-  })
-  .then(function() {
+  var iframe = document.createElement('iframe');
+  iframe.name = 'hidden-submit';
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+
+  var form = document.createElement('form');
+  form.method = 'POST';
+  form.action = SCRIPT_URL;
+  form.target = 'hidden-submit';
+
+  var input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'payload';
+  input.value = JSON.stringify(data);
+  form.appendChild(input);
+
+  document.body.appendChild(form);
+  form.submit();
+
+  setTimeout(function() {
     showSuccess();
-  })
-  .catch(function() {
-    btn.textContent = 'Submit interest form';
-    btn.disabled = false;
-    alert('Something went wrong. Please try again or email us directly.');
-  });
+  }, 1500);
 }
 
 // Smooth scroll for all anchor links

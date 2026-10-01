@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Youth Programs — Summer 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --tc:#C4622D;--tc-d:#8B3E18;--tc-l:#E8895A;
+  --tl:#2B5F8A;--tl-d:#1A3F5C;--tl-l:#4A85B5;
+  --ink:#1C1A17;--muted:#6B6457;--cream:#FBF7F0;--sand:#F0EAD8;--border:rgba(28,26,23,0.12);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);font-size:15px;line-height:1.7}
+a{text-decoration:none}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem;background:var(--cream);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink)}
+.nav-logo span{color:var(--tc)}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{font-size:0.85rem;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--tc)!important;color:white!important;padding:0.45rem 1.1rem;border-radius:4px;font-weight:500}
+
+.hero{padding:4rem 2.5rem 3rem;max-width:900px;margin:0 auto;text-align:center}
+.hero-eyebrow{font-size:0.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--tc);font-weight:500;margin-bottom:1rem}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:500;line-height:1.1;margin-bottom:1rem}
+.hero-title em{font-style:italic;color:var(--tc)}
+.hero-sub{color:var(--muted);max-width:560px;margin:0 auto 2rem;font-size:1rem;line-height:1.8}
+.hero-cta{display:inline-block;background:var(--tc);color:white;padding:.8rem 2rem;border-radius:4px;font-weight:500;font-size:.95rem;transition:background .2s}
+.hero-cta:hover{background:var(--tc-d)}
+
+.programs{padding:3rem 2.5rem}
+.programs-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px;margin:0 auto}
+.prog-card{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.prog-card.morocco .prog-header{background:var(--tc);color:white}
+.prog-card.tokyo .prog-header{background:var(--tl);color:white}
+.prog-header{padding:1.75rem 1.75rem 1.5rem}
+.prog-tag{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-bottom:.5rem;font-weight:500}
+.prog-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500;line-height:1.1;margin-bottom:.25rem}
+.prog-subtitle{font-size:.85rem;opacity:.8}
+.prog-body{padding:1.5rem 1.75rem;background:var(--cream)}
+.prog-meta{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.25rem}
+.meta-item{background:var(--sand);border-radius:4px;padding:.6rem .75rem}
+.meta-label{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.meta-val{font-size:.9rem;font-weight:500;color:var(--ink)}
+.prog-highlights{list-style:none;margin-bottom:1.25rem}
+.prog-highlights li{font-size:.875rem;color:var(--muted);padding:.3rem 0;border-top:1px solid var(--border);display:flex;align-items:flex-start;gap:.5rem}
+.prog-highlights li::before{content:'';width:5px;height:5px;border-radius:50%;margin-top:.55rem;flex-shrink:0}
+.prog-card.morocco .prog-highlights li::before{background:var(--tc)}
+.prog-card.tokyo .prog-highlights li::before{background:var(--tl)}
+.prog-apply{display:block;text-align:center;padding:.7rem;border-radius:4px;font-size:.875rem;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:background .2s;width:100%}
+.prog-card.morocco .prog-apply{background:var(--tc);color:white}
+.prog-card.morocco .prog-apply:hover{background:var(--tc-d)}
+.prog-card.tokyo .prog-apply{background:var(--tl);color:white}
+.prog-card.tokyo .prog-apply:hover{background:var(--tl-d)}
+
+.section-head{text-align:center;margin-bottom:2.5rem}
+.section-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--tc);font-weight:500;margin-bottom:.5rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:500;line-height:1.2}
+
+.form-section{padding:3rem 2.5rem;background:var(--sand)}
+.form-wrap{max-width:700px;margin:0 auto;background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:2.5rem}
+.form-prog-pick{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-bottom:2rem}
+.pick-btn{padding:.65rem;border:1.5px solid var(--border);border-radius:4px;background:transparent;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all .2s;text-align:center;line-height:1.4}
+.pick-btn.sel-morocco{border-color:var(--tc);background:rgba(196,98,45,.08);color:var(--tc)}
+.pick-btn.sel-tokyo{border-color:var(--tl);background:rgba(43,95,138,.08);color:var(--tl)}
+.pick-btn.sel-both{border-color:var(--ink);background:rgba(28,26,23,.06);color:var(--ink)}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:.75rem;font-weight:500;letter-spacing:.04em;color:var(--ink);margin-bottom:.35rem}
+.form-group label .opt{font-weight:400;color:var(--muted)}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:.65rem .85rem;border:1px solid var(--border);border-radius:4px;
+  background:var(--cream);font-family:'DM Sans',sans-serif;font-size:.875rem;
+  color:var(--ink);outline:none;transition:border-color .2s
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--tc)}
+.form-section-title{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:1.75rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.conditional{display:none}
+.conditional.show{display:block}
+.form-error{font-size:.75rem;color:#c0392b;margin-top:.25rem;display:none}
+.form-error.show{display:block}
+.form-submit{width:100%;padding:.9rem;background:var(--tc);color:white;border:none;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;margin-top:1.25rem;transition:background .2s}
+.form-submit:hover{background:var(--tc-d)}
+.form-note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:.75rem}
+
+.success-msg{display:none;text-align:center;padding:2.5rem}
+.success-icon{width:52px;height:52px;border-radius:50%;background:rgba(43,122,78,.1);border:1px solid rgba(43,122,78,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.4rem;color:#2b7a4e}
+.success-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500;margin-bottom:.5rem}
+.success-sub{font-size:.9rem;color:var(--muted);max-width:380px;margin:0 auto}
+
+footer{background:var(--ink);color:rgba(251,247,240,.65);padding:2.5rem;text-align:center}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:white;margin-bottom:.5rem}
+.footer-logo span{color:var(--tc-l)}
+.footer-sub{font-size:.8rem}
+
+@media(max-width:640px){
+  nav{padding:1rem 1.25rem}
+  .nav-links{gap:1rem}
+  .hero{padding:2.5rem 1.25rem 2rem}
+  .programs{padding:2rem 1.25rem}
+  .programs-grid{grid-template-columns:1fr}
+  .form-section{padding:2rem 1.25rem}
+  .form-wrap{padding:1.5rem}
+  .form-row{grid-template-columns:1fr}
+  .form-prog-pick{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Global Youth <span>Programs</span></a>
+  <ul class="nav-links">
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#apply" class="nav-cta">Express interest</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="hero-eyebrow">Summer 2027 · High School & College Students</p>
+  <h1 class="hero-title">Learn Where the<br><em>World Teaches</em></h1>
+  <p class="hero-sub">Two immersive summer programs — Arabic language in Morocco and robotics & Japanese in Tokyo — designed to give students real-world skills in places where those skills come alive.</p>
+  <a href="#apply" class="hero-cta">Express interest for Summer 2027</a>
+</div>
+
+<section class="programs" id="programs">
+  <div class="section-head">
+    <p class="section-label">2027 programs</p>
+    <h2 class="section-title">Choose your destination</h2>
+  </div>
+  <div class="programs-grid">
+    <div class="prog-card morocco">
+      <div class="prog-header">
+        <div class="prog-tag">Morocco · Arabic Language</div>
+        <div class="prog-name">Marrakech<br>Immersion</div>
+        <div class="prog-subtitle">Speak Arabic. Live Morocco.</div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-meta">
+          <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-val">2 weeks</div></div>
+          <div class="meta-item"><div class="meta-label">When</div><div class="meta-val">June 2027</div></div>
+          <div class="meta-item"><div class="meta-label">Level</div><div class="meta-val">All levels</div></div>
+          <div class="meta-item"><div class="meta-label">Tuition</div><div class="meta-val">TBA 2026*</div></div>
+        </div>
+        <ul class="prog-highlights">
+          <li>4 hours of Arabic instruction daily</li>
+          <li>Homestay with local Moroccan family</li>
+          <li>Medina walks, souks, cultural excursions</li>
+          <li>Modern Standard Arabic + Moroccan Darija</li>
+          <li>Certificate of completion</li>
+        </ul>
+        <button class="prog-apply" onclick="scrollToForm('morocco')">Apply for Morocco program</button>
+      </div>
+    </div>
+    <div class="prog-card tokyo">
+      <div class="prog-header">
+        <div class="prog-tag">Tokyo · Robotics & Japanese</div>
+        <div class="prog-name">Tokyo<br>Tech & Language</div>
+        <div class="prog-subtitle">Build robots. Learn Japanese.</div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-meta">
+          <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-val">2 weeks</div></div>
+          <div class="meta-item"><div class="meta-label">When</div><div class="meta-val">June 2027</div></div>
+          <div class="meta-item"><div class="meta-label">Focus</div><div class="meta-val">Robotics</div></div>
+          <div class="meta-item"><div class="meta-label">Tuition</div><div class="meta-val">TBA 2026*</div></div>
+        </div>
+        <ul class="prog-highlights">
+          <li>Hands-on robotics workshops daily</li>
+          <li>Japanese language & cultural sessions</li>
+          <li>Lab visits at Tokyo tech institutions</li>
+          <li>Team project: build & demo a robot</li>
+          <li>No prior coding or robotics required</li>
+        </ul>
+        <button class="prog-apply" onclick="scrollToForm('tokyo')">Apply for Tokyo program</button>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:.78rem;color:var(--muted);margin-top:1.25rem">* Tuition announced early 2026. Scholarships available. Airfare not included.</p>
+</section>
+
+<section class="form-section" id="apply">
+  <div class="section-head">
+    <p class="section-label">Get started</p>
+    <h2 class="section-title">Express your interest</h2>
+    <p style="color:var(--muted);margin-top:.5rem;font-size:.9rem">No commitment. We'll follow up with program details and the full application when it opens.</p>
+  </div>
+
+  <div class="form-wrap" id="form-container">
+    <div id="form-inner">
+      <p style="font-size:.8rem;font-weight:500;color:var(--ink);margin-bottom:.6rem">Which program interests you?</p>
+      <div class="form-prog-pick">
+        <button class="pick-btn" id="pick-morocco" onclick="setProg('morocco')">Morocco<br><span style="font-weight:400;font-size:.7rem">Arabic language</span></button>
+        <button class="pick-btn" id="pick-tokyo" onclick="setProg('tokyo')">Tokyo<br><span style="font-weight:400;font-size:.7rem">Robotics & Japanese</span></button>
+        <button class="pick-btn" id="pick-both" onclick="setProg('both')">Both<br><span style="font-weight:400;font-size:.7rem">Interested in both</span></button>
+      </div>
+      <div class="form-error" id="err-prog">Please select a program to continue.</div>
+
+      <div class="form-section-title">About you</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First name</label>
+          <input type="text" id="fname" placeholder="Aisha">
+          <div class="form-error" id="err-fname">Required.</div>
+        </div>
+        <div class="form-group">
+          <label>Last name</label>
+          <input type="text" id="lname" placeholder="Johnson">
+          <div class="form-error" id="err-lname">Required.</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="you@email.com">
+          <div class="form-error" id="err-email">Enter a valid email.</div>
+        </div>
+        <div class="form-group">
+          <label>Age / grade</label>
+          <select id="grade">
+            <option value="">Select one</option>
+            <option>9th grade (14–15)</option>
+            <option>10th grade (15–16)</option>
+            <option>11th grade (16–17)</option>
+            <option>12th grade (17–18)</option>
+            <option>College freshman</option>
+            <option>College sophomore</option>
+            <option>College junior</option>
+            <option>College senior</option>
+          </select>
+          <div class="form-error" id="err-grade">Required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>School name</label>
+        <input type="text" id="school" placeholder="Lincoln High School">
+        <div class="form-error" id="err-school">Required.</div>
+      </div>
+
+      <div class="form-section-title">Parent / guardian</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Parent / guardian name</label>
+          <input type="text" id="parent-name" placeholder="Marcus Johnson">
+        </div>
+        <div class="form-group">
+          <label>Parent / guardian email</label>
+          <input type="email" id="parent-email" placeholder="parent@email.com">
+        </div>
+      </div>
+
+      <div class="form-section-title">Program goals</div>
+      <div class="form-group">
+        <label>What do you hope to get out of this program?</label>
+        <textarea id="goals" rows="3" placeholder="What skills, experiences, or outcomes matter most to you?"></textarea>
+        <div class="form-error" id="err-goals">Please share your goals — it helps us tailor the program.</div>
+      </div>
+      <div class="form-group">
+        <label>How do you learn best? <span class="opt">(optional)</span></label>
+        <textarea id="learn-style" rows="2" placeholder="Hands-on projects, lectures, group work, solo study..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Previous travel experience <span class="opt">(optional)</span></label>
+        <select id="travel">
+          <option value="">Select one</option>
+          <option>No international travel</option>
+          <option>Traveled internationally once or twice</option>
+          <option>Traveled internationally several times</option>
+          <option>Extensive international travel</option>
+        </select>
+      </div>
+
+      <div id="morocco-fields" class="conditional">
+        <div class="form-section-title" style="border-color:var(--tc);color:var(--tc)">Morocco — Arabic background</div>
+        <div class="form-group">
+          <label>Arabic experience level</label>
+          <select id="arabic-level">
+            <option value="">Select one</option>
+            <option>Complete beginner</option>
+            <option>Know the alphabet, basic words</option>
+            <option>Conversational (basic)</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Any prior Arabic study? <span class="opt">(optional)</span></label>
+          <input type="text" id="arabic-study" placeholder="e.g. 1 year at school, Duolingo, community classes">
+        </div>
+      </div>
+
+      <div id="tokyo-fields" class="conditional">
+        <div class="form-section-title" style="border-color:var(--tl);color:var(--tl)">Tokyo — Robotics & tech background</div>
+        <div class="form-group">
+          <label>Robotics / engineering experience</label>
+          <select id="robotics-level">
+            <option value="">Select one</option>
+            <option>No experience</option>
+            <option>Some tinkering / hobbyist</option>
+            <option>School robotics club or class</option>
+            <option>Competed in robotics (FTC, FRC, etc.)</option>
+            <option>Significant hands-on experience</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Coding experience <span class="opt">(optional)</span></label>
+          <select id="coding-level">
+            <option value="">Select one</option>
+            <option>None</option>
+            <option>Scratch / block-based only</option>
+            <option>Some Python or JavaScript</option>
+            <option>Comfortable with at least one language</option>
+            <option>Strong programmer</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Japanese experience level <span class="opt">(optional)</span></label>
+          <select id="japanese-level">
+            <option value="">Select one</option>
+            <option>Complete beginner</option>
+            <option>Know hiragana / katakana</option>
+            <option>Basic conversational</option>
+            <option>Intermediate or above</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section-title">Health & logistics</div>
+      <div class="form-group">
+        <label>Dietary restrictions or allergies <span class="opt">(optional)</span></label>
+        <input type="text" id="diet" placeholder="e.g. vegetarian, nut allergy, halal">
+      </div>
+      <div class="form-group">
+        <label>Any accessibility needs or accommodations? <span class="opt">(optional)</span></label>
+        <textarea id="access" rows="2" placeholder="Share anything that would help us support you during the program"></textarea>
+      </div>
+
+      <div class="form-section-title">Final questions</div>
+      <div class="form-group">
+        <label>Is financial assistance important for your participation?</label>
+        <select id="financial">
+          <option value="">Prefer not to say</option>
+          <option>No, tuition is not a barrier</option>
+          <option>Possibly — would consider a scholarship</option>
+          <option>Yes — a scholarship would be essential</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Is academic credit important for your participation?</label>
+        <select id="credit">
+          <option value="">Select one</option>
+          <option>Essential — I won't participate without credit</option>
+          <option>It would be nice, but not required</option>
+          <option>Indifferent — credit doesn't matter to me</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>How did you hear about this program? <span class="opt">(optional)</span></label>
+        <select id="referral">
+          <option value="">Select one</option>
+          <option>School counselor or teacher</option>
+          <option>Friend or family</option>
+          <option>Social media</option>
+          <option>Internet search</option>
+          <option>Coach or mentor</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Anything else you'd like us to know? <span class="opt">(optional)</span></label>
+        <textarea id="other" rows="2" placeholder="Questions, special circumstances, anything at all"></textarea>
+      </div>
+
+      <button class="form-submit" onclick="handleSubmit()">Submit interest form</button>
+      <p class="form-note">We reply within 48 hours. No commitment required.</p>
+    </div>
+
+    <div class="success-msg" id="success-msg">
+      <div class="success-icon">✓</div>
+      <div class="success-title">You're on the list!</div>
+      <p class="success-sub">We'll follow up within 48 hours with more details and next steps for the Summer 2027 program.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Global Youth <span>Programs</span> 2027</div>
+  <p class="footer-sub">Morocco · Tokyo · Summer 2027 · Ages 14–22</p>
+</footer>
+
+<script>
+// ---------------------------------------------------------------
+// STEP 1: After deploying your Apps Script, paste the URL below
+// ---------------------------------------------------------------
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyIlsSSL09uUpWYLzgpOM4xrZJ5gi6HGE6_KkWik8wbzAY2-WDCFPNyYHCar2Bl1abJ/exec";
+// ---------------------------------------------------------------
+
+var selectedProg = '';
+
+function setProg(p) {
+  selectedProg = p;
+  ['morocco','tokyo','both'].forEach(function(x) {
+    document.getElementById('pick-'+x).className = 'pick-btn';
+  });
+  document.getElementById('pick-'+p).className = 'pick-btn sel-'+p;
+  document.getElementById('err-prog').classList.remove('show');
+  document.getElementById('morocco-fields').classList.toggle('show', p==='morocco'||p==='both');
+  document.getElementById('tokyo-fields').classList.toggle('show', p==='tokyo'||p==='both');
+}
+
+function scrollToForm(prog) {
+  document.getElementById('apply').scrollIntoView({behavior:'smooth'});
+  setTimeout(function(){ setProg(prog); }, 400);
+}
+
+function clearErrors() {
+  document.querySelectorAll('.form-error').forEach(function(e){ e.classList.remove('show'); });
+}
+
+function showErr(id) {
+  document.getElementById(id).classList.add('show');
+}
+
+function showSuccess() {
+  document.getElementById('form-inner').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+}
+
+function handleSubmit() {
+  clearErrors();
+  var valid = true;
+
+  if (!selectedProg) { showErr('err-prog'); valid = false; }
+  if (!document.getElementById('fname').value.trim()) { showErr('err-fname'); valid = false; }
+  if (!document.getElementById('lname').value.trim()) { showErr('err-lname'); valid = false; }
+  var email = document.getElementById('email').value.trim();
+  if (!email || !email.includes('@')) { showErr('err-email'); valid = false; }
+  if (!document.getElementById('grade').value) { showErr('err-grade'); valid = false; }
+  if (!document.getElementById('school').value.trim()) { showErr('err-school'); valid = false; }
+  if (!document.getElementById('goals').value.trim()) { showErr('err-goals'); valid = false; }
+  if (!valid) return;
+
+  var data = {
+    timestamp: new Date().toISOString(),
+    program: selectedProg,
+    firstName: document.getElementById('fname').value.trim(),
+    lastName: document.getElementById('lname').value.trim(),
+    email: email,
+    grade: document.getElementById('grade').value,
+    school: document.getElementById('school').value.trim(),
+    parentName: document.getElementById('parent-name').value.trim(),
+    parentEmail: document.getElementById('parent-email').value.trim(),
+    goals: document.getElementById('goals').value.trim(),
+    learnStyle: document.getElementById('learn-style').value.trim(),
+    travelExperience: document.getElementById('travel').value,
+    arabicLevel: document.getElementById('arabic-level').value,
+    arabicStudy: document.getElementById('arabic-study').value.trim(),
+    roboticsLevel: document.getElementById('robotics-level').value,
+    codingLevel: document.getElementById('coding-level').value,
+    japaneseLevel: document.getElementById('japanese-level').value,
+    diet: document.getElementById('diet').value.trim(),
+    accessibility: document.getElementById('access').value.trim(),
+    financialAid: document.getElementById('financial').value,
+    creditNeeded: document.getElementById('credit').value,
+    referral: document.getElementById('referral').value,
+    other: document.getElementById('other').value.trim()
+  };
+
+  if (SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+    // Not yet wired up — still show success so you can test the form
+    showSuccess();
+    return;
+  }
+
+  var btn = document.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(data)
+  }).then(function() {
+    showSuccess();
+  }).catch(function() {
+    btn.textContent = 'Submit Interest Form';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again or email us directly.');
+  });
+}
+
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
